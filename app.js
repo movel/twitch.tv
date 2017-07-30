@@ -63,6 +63,17 @@ function getChannelInfo() {
 
 window.onload = function() {
   getChannelInfo();
+  
+  let selector = document.getElementsByClassName("selector");
+  
+  selector.addEventListener("click", function(){
+    selector.removeClass("active");
+    this.addClass("active");
+    var status = this;
+    
+  });
+  
+  
   $(".selector").click(function() {
     $(".selector").removeClass("active");
     $(this).addClass("active");
@@ -78,3 +89,4 @@ window.onload = function() {
     }
   })
 };
+
