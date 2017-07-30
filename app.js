@@ -64,29 +64,39 @@ function getChannelInfo() {
 window.onload = function() {
   getChannelInfo();
   
-  let selector = document.getElementsByClassName("selector");
+  let selector = document.getElementsByClassName(".selector");
   
   selector.addEventListener("click", function(){
     selector.removeClass("active");
     this.addClass("active");
-    var status = this;
+    var status = this.attr('id');
+    if (status === "all") {
+      document.getElementsByClassName(".online, .offline").removeClass("hidden");
+    } else if (status === "online") {
+      document.getElementsByClassName(".online").removeClass("hidden");
+      document.getElementsByClassName(".offline").addClass("hidden");
+    } else {
+      document.getElementsByClassName(".offline").removeClass("hidden");
+      document.getElementsByClassName(".online").addClass("hidden");
+    }
     
   });
-  
-  
-  $(".selector").click(function() {
-    $(".selector").removeClass("active");
-    $(this).addClass("active");
-    var status = $(this).attr('id');
-    if (status === "all") {
-      $(".online, .offline").removeClass("hidden");
-    } else if (status === "online") {
-      $(".online").removeClass("hidden");
-      $(".offline").addClass("hidden");
-    } else {
-      $(".offline").removeClass("hidden");
-      $(".online").addClass("hidden");
-    }
-  })
 };
+  
+  
+  // $(".selector").click(function() {
+  //   $(".selector").removeClass("active");
+  //   $(this).addClass("active");
+  //   var status = $(this).attr('id');
+  //   if (status === "all") {
+  //     $(".online, .offline").removeClass("hidden");
+  //   } else if (status === "online") {
+  //     $(".online").removeClass("hidden");
+  //     $(".offline").addClass("hidden");
+  //   } else {
+  //     $(".offline").removeClass("hidden");
+  //     $(".online").addClass("hidden");
+  //   }
+  // })
+
 
