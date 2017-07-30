@@ -65,3 +65,7 @@ function misLlamadas() {
 }
 
 misLlamadas();
+
+/* Pure Javascript: */
+let html = 'http://jsfiddle.net/rn3nc/1/';
+
