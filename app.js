@@ -1,27 +1,27 @@
 'use strict';
 
-// let channels = [
-//       "ESL_SC2", 
-//       "OgamingSC2", 
-//       "cretetion", 
-//       "freecodecamp", 
-//       "storbeck", 
-//       "habathcx", 
-//       "RobotCaleb", 
-//       "noobs2ninjas"
-//     ];
-    
 let channels = [
-      "ESL_SC2"
+      "ESL_SC2", 
+      "OgamingSC2", 
+      "cretetion", 
+      "freecodecamp", 
+      "storbeck", 
+      "habathcx", 
+      "RobotCaleb", 
+      "noobs2ninjas"
     ];
     
+// let channels = [
+//       "ESL_SC2"
+//     ];
+    
 let clientId = 'c8a3wkkb56yqjhlcui7tcfyjvs65dy6';
-const url = 'https://api.twitch.tv/kraken/streams/' + channels[0] + '?client_id=' + clientId;
+// const url = 'https://api.twitch.tv/kraken/streams/' + channels[0] + '?client_id=' + clientId;
     
 function getChannelInfo() {
   channels.forEach(function(channel) {
     function makeURL(type, name) {
-      return 'https://wind-bow.gomix.me/twitch-api/' + type + '/' + name + '?callback=?';
+      return 'https://api.twitch.tv/kraken/' + type + '/' + name + '?client_id=' + clientId + '?callback=?';
     }
     /* global fetch */
     fetch(makeURL("streams", channel))
@@ -83,20 +83,3 @@ window.onload = function() {
   });
 };
   
-  
-  // $(".selector").click(function() {
-  //   $(".selector").removeClass("active");
-  //   $(this).addClass("active");
-  //   var status = $(this).attr('id');
-  //   if (status === "all") {
-  //     $(".online, .offline").removeClass("hidden");
-  //   } else if (status === "online") {
-  //     $(".online").removeClass("hidden");
-  //     $(".offline").addClass("hidden");
-  //   } else {
-  //     $(".offline").removeClass("hidden");
-  //     $(".online").addClass("hidden");
-  //   }
-  // })
-
-
