@@ -52,7 +52,10 @@ function getChannelInfo() {
           name + '</a></div><div class="col-xs-10 col-sm-8" id="streaming">'+ 
           game + '<span class="hidden-xs">' + 
           description + '</span></div></div>';
-        status === "online" ? $("#display").prepend(html) : $("#display").append(html);
+          var el = document.getElementById('display');
+          var elChild = document.createElement('div');
+          el.innerHTML = html;
+        status === "online" ? el.insertBefore(elChild, el.firstChild) : el.appendChild(elChild);
       });
     });
   });
