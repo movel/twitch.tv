@@ -64,6 +64,11 @@ function getChannelInfo() {
 window.onload = function() {
   getChannelInfo();
   
+  document.body.style.background = 'red';
+  alert( 'Элемент BODY стал красным, а сейчас обратно вернётся' );
+  document.body.style.background = '';
+  alert( location.href );
+  
   let selector = document.getElementsByClassName(".selector");
   
   selector.addEventListener("click", function(){
@@ -82,4 +87,5 @@ window.onload = function() {
     
   });
 };
+  
   

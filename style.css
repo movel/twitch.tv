@@ -13,7 +13,7 @@
 }
 
 body {
-  background-color: #ecf0e7;
+  /*background-color: #ecf0e7;*/
   font-family: 'Droid Serif', serif;
   font-size: 14px;
   color: #8ea7c2;
@@ -61,16 +61,15 @@ h1 {
   }
   
   #online .circle {
-     {
       background-color: #b8cca6;
     }
-  }
+
   
   #offline .circle {
-     {
+
       background-color: #8ea7c2;
     }
-  }
+
   
   .active, .selector:hover {
     width: 65px !important;
