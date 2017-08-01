@@ -30,16 +30,16 @@ function getChannelInfo() {
       var game,
           status;
       if (data.stream === null) {
-        game = "Offline";
-        status = "offline";
+        game = 'Offline';
+        status = 'offline';
       } else if (data.stream === undefined) {
-        game = "Account Closed";
-        status = "offline";
+        game = 'Account Closed';
+        status = 'offline';
       } else {
         game = data.stream.game;
-        status = "online";
+        status = 'online';
       }
-      fetch(makeURL("channels", channel))
+      fetch(makeURL('channels', channel))
       .then((resp) => resp.json()) // Transform the data into json
       .then(function(data) {
         let logo = data.logo != null ? data.logo : "https://dummyimage.com/50x50/ecf0e7/5c5457.jpg&text=0x3F",
@@ -54,38 +54,53 @@ function getChannelInfo() {
           description + '</span></div></div>';
           var el = document.getElementById('display');
           var elChild = document.createElement('div');
-          el.innerHTML = html;
-        status === "online" ? el.insertBefore(elChild, el.firstChild) : el.appendChild(elChild);
+          elChild.innerHTML = html;
+          status === 'online' ? el.insertBefore(elChild, el.firstChild) : el.appendChild(elChild);
       });
     });
   });
 }
 
+function setBodyColor() {
+	document.body.style.background = '#CCCC99';
+  }
+
+document.addEventListener("DOMContentLoaded", setBodyColor);
+
 window.onload = function() {
   getChannelInfo();
   
-  document.body.style.background = 'red';
-  alert( 'Элемент BODY стал красным, а сейчас обратно вернётся' );
-  document.body.style.background = '';
-  alert( location.href );
+  var selector, elems, makeActive;
+  selector = '.selector';
+  elems = document.querySelectorAll(selector);
   
-  let selector = document.getElementsByClassName(".selector");
+  makeActive = function () {
+      for (var i = 0; i < elems.length; i++) elems[i].classList.remove('active');
+      
+      this.classList.add('active');
+      
+      var status = this.id;
+      let elements;
+      
+      if (status === 'all') {
+        elements = document.querySelectorAll('.online, .offline');
+        for (let i=0; i<elements.length; i++) elements[i].classList.remove('hidden');
+      } else if (status === 'online') {
+        elements = document.getElementsByClassName('online');
+        for (let i=0; i<elements.length; i++) elements[i].classList.remove('hidden');
+        elements = document.getElementsByClassName('offline');
+        for (let i=0; i<elements.length; i++) elements[i].classList.add('hidden');
+      } else {
+        elements = document.getElementsByClassName('offline');
+        for (let i=0; i<elements.length; i++) elements[i].classList.remove('hidden');
+        elements = document.getElementsByClassName('online');
+        for (let i=0; i<elements.length; i++) elements[i].classList.add('hidden');
+      }
+  };
   
-  selector.addEventListener("click", function(){
-    selector.removeClass("active");
-    this.addClass("active");
-    var status = this.attr('id');
-    if (status === "all") {
-      document.getElementsByClassName(".online, .offline").removeClass("hidden");
-    } else if (status === "online") {
-      document.getElementsByClassName(".online").removeClass("hidden");
-      document.getElementsByClassName(".offline").addClass("hidden");
-    } else {
-      document.getElementsByClassName(".offline").removeClass("hidden");
-      document.getElementsByClassName(".online").addClass("hidden");
-    }
-    
-  });
+  for (var i = 0; i < elems.length; i++)
+      elems[i].addEventListener('mousedown', makeActive);
+
 };
   
   
