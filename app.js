@@ -11,12 +11,7 @@ let channels = [
       "noobs2ninjas"
     ];
     
-// let channels = [
-//       "ESL_SC2"
-//     ];
-    
 let clientId = 'c8a3wkkb56yqjhlcui7tcfyjvs65dy6';
-// const url = 'https://api.twitch.tv/kraken/streams/' + channels[0] + '?client_id=' + clientId;
     
 function getChannelInfo() {
   channels.forEach(function(channel) {
@@ -61,12 +56,6 @@ function getChannelInfo() {
   });
 }
 
-function setBodyColor() {
-	document.body.style.background = '#CCCC99';
-  }
-
-document.addEventListener("DOMContentLoaded", setBodyColor);
-
 window.onload = function() {
   getChannelInfo();
   
@@ -80,26 +69,30 @@ window.onload = function() {
       this.classList.add('active');
       
       var status = this.id;
-      let elements;
       
       if (status === 'all') {
-        elements = document.querySelectorAll('.online, .offline');
-        for (let i=0; i<elements.length; i++) elements[i].classList.remove('hidden');
+        remove('.online, .offline');
       } else if (status === 'online') {
-        elements = document.getElementsByClassName('online');
-        for (let i=0; i<elements.length; i++) elements[i].classList.remove('hidden');
-        elements = document.getElementsByClassName('offline');
-        for (let i=0; i<elements.length; i++) elements[i].classList.add('hidden');
+        remove('.online');
+        add('.offline');
       } else {
-        elements = document.getElementsByClassName('offline');
-        for (let i=0; i<elements.length; i++) elements[i].classList.remove('hidden');
-        elements = document.getElementsByClassName('online');
-        for (let i=0; i<elements.length; i++) elements[i].classList.add('hidden');
+        remove('.offline');
+        add('.online');
       }
   };
   
   for (var i = 0; i < elems.length; i++)
       elems[i].addEventListener('mousedown', makeActive);
+      
+  function add(select) {
+    let elements = document.querySelectorAll(select);
+    for (let i=0; i<elements.length; i++) elements[i].classList.add('hidden');
+  }
+  
+  function remove(select) {
+    let elements = document.querySelectorAll(select);
+    for (let i=0; i<elements.length; i++) elements[i].classList.remove('hidden');
+  }
 
 };
   
